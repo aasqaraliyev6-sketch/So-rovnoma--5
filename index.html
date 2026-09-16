@@ -18,16 +18,17 @@
             padding: 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
         }
         
         .container {
             background: white;
             border-radius: 20px;
             padding: 40px;
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin: 20px 0;
         }
         
         h1 {
@@ -58,6 +59,7 @@
             border-radius: 10px;
             font-size: 16px;
             transition: all 0.3s;
+            font-family: inherit;
         }
         
         input[type="text"]:focus,
@@ -68,30 +70,38 @@
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
         .question {
-            margin-bottom: 25px;
-            padding: 20px;
+            margin-bottom: 30px;
+            padding: 25px;
             background: #f8f9fa;
             border-radius: 10px;
+            border-left: 4px solid #667eea;
         }
         
         .question-text {
-            font-size: 18px;
+            font-size: 17px;
             color: #333;
             margin-bottom: 15px;
             font-weight: 500;
+            line-height: 1.6;
         }
         
         .options {
             display: flex;
             flex-direction: column;
             gap: 10px;
+            margin-bottom: 15px;
         }
         
         .option {
             display: flex;
             align-items: center;
-            padding: 10px;
+            padding: 12px;
             background: white;
             border-radius: 8px;
             cursor: pointer;
@@ -100,19 +110,33 @@
         
         .option:hover {
             background: #f0f0f0;
+            transform: translateX(5px);
         }
         
         .option input[type="radio"] {
-            margin-right: 10px;
+            margin-right: 12px;
             width: 20px;
             height: 20px;
             cursor: pointer;
+            flex-shrink: 0;
         }
         
         .option label {
             margin: 0;
             cursor: pointer;
             font-weight: normal;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .comment-section {
+            margin-top: 15px;
+        }
+        
+        .comment-section label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
         }
         
         button {
@@ -126,7 +150,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 20px;
+            margin-top: 30px;
         }
         
         button:hover {
@@ -157,6 +181,10 @@
             h1 {
                 font-size: 24px;
             }
+            
+            .question-text {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -165,57 +193,288 @@
         <h1>📋 Sorovnoma</h1>
         
         <form id="surveyForm">
-            <!-- Bo'lim tanlash -->
+            <!-- 1-savol: Muassasa nomi -->
+            <div class="question">
+                <div class="question-text">1. Сиз ишлайдиган муассаса:</div>
+                <input type="text" id="q1_institution" name="q1_institution" placeholder="Муассаса номини киритинг..." required>
+            </div>
+            
+            <!-- Bo'lim -->
             <div class="section">
-                <label for="department">🏢 Bo'limingiz:</label>
-                <input type="text" id="department" name="department" placeholder="Bo'lim nomini kiriting..." required>
+                <label for="department">🏢 Бўлим:</label>
+                <input type="text" id="department" name="department" placeholder="Бўлим номини киритинг..." required>
             </div>
             
-            <!-- Savollar shu yerga qo'shiladi -->
-            <div id="questionsContainer">
-                <!-- 1-savol -->
-                <div class="question">
-                    <div class="question-text">1. Bu yerda 1-savol bo'ladi</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q1_a1" name="question1" value="Javob 1" required>
-                            <label for="q1_a1">Javob 1</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q1_a2" name="question1" value="Javob 2">
-                            <label for="q1_a2">Javob 2</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q1_a3" name="question1" value="Javob 3">
-                            <label for="q1_a3">Javob 3</label>
-                        </div>
+            <!-- 2-savol -->
+            <div class="question">
+                <div class="question-text">2. Раҳбарият ёки масъул ходимлар томонидан ходимларга нисбатан босим, қўрқитиш, таҳдид, ҳақорат, психологик босим, ёки қўпол муомала ҳолатлари учрайдими?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q2_a1" name="question2" value="Ҳеч қачон" required>
+                        <label for="q2_a1">Ҳеч қачон</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2_a2" name="question2" value="Камдан-кам">
+                        <label for="q2_a2">Камдан-кам</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2_a3" name="question2" value="Баъзан">
+                        <label for="q2_a3">Баъзан</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2_a4" name="question2" value="Тез-тез">
+                        <label for="q2_a4">Тез-тез</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2_a5" name="question2" value="Доимий">
+                        <label for="q2_a5">Доимий</label>
                     </div>
                 </div>
-                
-                <!-- 2-savol -->
-                <div class="question">
-                    <div class="question-text">2. Bu yerda 2-savol bo'ladi</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="q2_a1" name="question2" value="Javob 1" required>
-                            <label for="q2_a1">Javob 1</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q2_a2" name="question2" value="Javob 2">
-                            <label for="q2_a2">Javob 2</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="q2_a3" name="question2" value="Javob 3">
-                            <label for="q2_a3">Javob 3</label>
-                        </div>
-                    </div>
+                <div class="comment-section">
+                    <label for="q2_comment">Қисқача баён қилинг:</label>
+                    <textarea id="q2_comment" name="q2_comment" placeholder="Ихтиёрий..."></textarea>
                 </div>
             </div>
             
-            <button type="submit">📤 Yuborish</button>
+            <!-- 3-savol -->
+            <div class="question">
+                <div class="question-text">3. Иш тақсимоти, навбатчилик, таътил, мукофот, устама ёки рағбатлантиришда адолатсизлик ёки таниш-билишчилик ҳолатлари борми?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q3_a1" name="question3" value="Ҳа" required>
+                        <label for="q3_a1">Ҳа</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3_a2" name="question3" value="Йўқ">
+                        <label for="q3_a2">Йўқ</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3_a3" name="question3" value="Баъзи ҳолатларда">
+                        <label for="q3_a3">Баъзи ҳолатларда</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3_a4" name="question3" value="Гувоҳ бўлганман">
+                        <label for="q3_a4">Гувоҳ бўлганман</label>
+                    </div>
+                </div>
+                <div class="comment-section">
+                    <label for="q3_comment">Қисқача баён қилинг:</label>
+                    <textarea id="q3_comment" name="q3_comment" placeholder="Ихтиёрий..."></textarea>
+                </div>
+            </div>
+            
+            <!-- 4-savol -->
+            <div class="question">
+                <div class="question-text">4. Иш жойида коррупциявий ҳолатларга дуч келганмисиз? (пул ёки совға талаб қилиш, ишга қабул қилиш, таътил, навбатчилик, мукофот ёки бошқа имтиёзлар учун манфаат талаб қилиш)</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q4_a1" name="question4" value="Ҳа" required>
+                        <label for="q4_a1">Ҳа</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q4_a2" name="question4" value="Йўқ">
+                        <label for="q4_a2">Йўқ</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q4_a3" name="question4" value="Шубҳаланаман">
+                        <label for="q4_a3">Шубҳаланаман</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q4_a4" name="question4" value="Гувоҳ бўлганман">
+                        <label for="q4_a4">Гувоҳ бўлганман</label>
+                    </div>
+                </div>
+                <div class="comment-section">
+                    <label for="q4_comment">Қисқача баён қилинг:</label>
+                    <textarea id="q4_comment" name="q4_comment" placeholder="Ихтиёрий..."></textarea>
+                </div>
+            </div>
+            
+            <!-- 5-savol -->
+            <div class="question">
+                <div class="question-text">5. Меҳнат ҳуқуқларингиз бузилган ёки меҳнат қонунчилигига зид ҳолатларни кузатганмисиз?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q5_a1" name="question5" value="Ҳа" required>
+                        <label for="q5_a1">Ҳа</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5_a2" name="question5" value="Йўқ">
+                        <label for="q5_a2">Йўқ</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5_a3" name="question5" value="Баъзи ҳолатларда">
+                        <label for="q5_a3">Баъзи ҳолатларда</label>
+                    </div>
+                </div>
+                <div class="comment-section">
+                    <label for="q5_comment">Қисқача баён қилинг:</label>
+                    <textarea id="q5_comment" name="q5_comment" placeholder="Ихтиёрий..."></textarea>
+                </div>
+            </div>
+            
+            <!-- 6-savol -->
+            <div class="question">
+                <div class="question-text">6. Муаммо ёки эътироз билан раҳбариятга мурожаат қилган ходимга кейинчалик босим ёки таъқиб ўтказилиши ҳолатлари борми?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q6_a1" name="question6" value="Ҳа" required>
+                        <label for="q6_a1">Ҳа</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q6_a2" name="question6" value="Йўқ">
+                        <label for="q6_a2">Йўқ</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q6_a3" name="question6" value="Гувоҳ бўлганман">
+                        <label for="q6_a3">Гувоҳ бўлганман</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q6_a4" name="question6" value="Билмайман">
+                        <label for="q6_a4">Билмайман</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 7-savol -->
+            <div class="question">
+                <div class="question-text">7. Ходимлар ўз ҳуқуқлари бузилганда раҳбарият ёки касаба уюшмасига эркин мурожаат қила оладими?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q7_a1" name="question7" value="Ҳа, бемалол" required>
+                        <label for="q7_a1">Ҳа, бемалол</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q7_a2" name="question7" value="Қисман">
+                        <label for="q7_a2">Қисман</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q7_a3" name="question7" value="Йўқ, қўрқаман">
+                        <label for="q7_a3">Йўқ, қўрқаман</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q7_a4" name="question7" value="Мурожаат қилсам, босим бўлишидан хавотирдаман">
+                        <label for="q7_a4">Мурожаат қилсам, босим бўлишидан хавотирдаман</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 8-savol -->
+            <div class="question">
+                <div class="question-text">8. Жамоада низо, жанжал, камситиш, психологик босим, агрессив хатти-ҳаракат ёки хавфсизликка таҳдид қилувчи ҳолатлар кузатилганми?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q8_a1" name="question8" value="Ҳа" required>
+                        <label for="q8_a1">Ҳа</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q8_a2" name="question8" value="Йўқ">
+                        <label for="q8_a2">Йўқ</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q8_a3" name="question8" value="Баъзан">
+                        <label for="q8_a3">Баъзан</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q8_a4" name="question8" value="Жиддий ҳолат бўлган">
+                        <label for="q8_a4">Жиддий ҳолат бўлган</label>
+                    </div>
+                </div>
+                <div class="comment-section">
+                    <label for="q8_comment">Қисқача баён қилинг:</label>
+                    <textarea id="q8_comment" name="q8_comment" placeholder="Ихтиёрий..."></textarea>
+                </div>
+            </div>
+            
+            <!-- 9-savol -->
+            <div class="question">
+                <div class="question-text">9. Сизга маълум бўлган, лекин ҳозиргача раҳбариятга етказилмаган жиддий ҳолат борми?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q9_a1" name="question9" value="Ҳа" required>
+                        <label for="q9_a1">Ҳа</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q9_a2" name="question9" value="Йўқ">
+                        <label for="q9_a2">Йўқ</label>
+                    </div>
+                </div>
+                <div class="comment-section">
+                    <label for="q9_comment">Қисқача баён қилинг:</label>
+                    <textarea id="q9_comment" name="q9_comment" placeholder="Ихтиёрий..."></textarea>
+                </div>
+            </div>
+            
+            <!-- 10-savol -->
+            <div class="question">
+                <div class="question-text">10. Ходимларни иш вақтидан ташқари, дам олиш ёки белгиланган иш вақтидан ташқари ҳолатларда асоссиз равишда ишга жалб қилиш ҳолатлари учрайдими?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q10_a1" name="question10" value="Йўқ" required>
+                        <label for="q10_a1">Йўқ</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q10_a2" name="question10" value="Камдан-кам">
+                        <label for="q10_a2">Камдан-кам</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q10_a3" name="question10" value="Баъзан">
+                        <label for="q10_a3">Баъзан</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q10_a4" name="question10" value="Тез-тез">
+                        <label for="q10_a4">Тез-тез</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q10_a5" name="question10" value="Доимий равишда">
+                        <label for="q10_a5">Доимий равишда</label>
+                    </div>
+                </div>
+                <div class="comment-section">
+                    <label for="q10_comment">Қисқача баён қилинг:</label>
+                    <textarea id="q10_comment" name="q10_comment" placeholder="Ихтиёрий..."></textarea>
+                </div>
+            </div>
+            
+            <!-- 11-savol -->
+            <div class="question">
+                <div class="question-text">11. Ходимлар ўртасида кредит ёки қарз масалалари билан боғлиқ муаммолар мавжудми?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q11_a1" name="question11" value="Йўқ" required>
+                        <label for="q11_a1">Йўқ</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11_a2" name="question11" value="Ҳа, бошқа ходимга кредит учун кафил бўлганман">
+                        <label for="q11_a2">Ҳа, бошқа ходимга кредит учун кафил бўлганман</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11_a3" name="question11" value="Ҳа, кафиллик сабабли қарздорлик муаммоси юзага келган">
+                        <label for="q11_a3">Ҳа, кафиллик сабабли қарздорлик муаммоси юзага келган</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11_a4" name="question11" value="Ўз пулимни бошқа ходимдан қайтариб ололмаяпман">
+                        <label for="q11_a4">Ўз пулимни бошқа ходимдан қайтариб ололмаяпман</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11_a5" name="question11" value="Жамоада бошқа қарздорлик билан боғлиқ низо мавжуд">
+                        <label for="q11_a5">Жамоада бошқа қарздорлик билан боғлиқ низо мавжуд</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11_a6" name="question11" value="Бундай ҳолатга гувоҳ бўлганман">
+                        <label for="q11_a6">Бундай ҳолатга гувоҳ бўлганман</label>
+                    </div>
+                </div>
+                <div class="comment-section">
+                    <label for="q11_comment">Қисқача баён қилинг:</label>
+                    <textarea id="q11_comment" name="q11_comment" placeholder="Ихтиёрий..."></textarea>
+                </div>
+            </div>
+            
+            <button type="submit">📤 Юбориш</button>
             
             <div class="success-message" id="successMessage">
-                ✅ Sorovnoma muvaffaqiyatli yuborildi!
+                ✅ Соровнома муваффақиятли юборилди!
             </div>
         </form>
     </div>
@@ -229,6 +488,7 @@
             e.preventDefault();
             
             // Ma'lumotlarni yig'ish
+            const institution = document.getElementById('q1_institution').value;
             const department = document.getElementById('department').value;
             
             // Javoblarni yig'ish
@@ -238,27 +498,35 @@
             questions.forEach((question, index) => {
                 const questionText = question.querySelector('.question-text').textContent;
                 const selectedAnswer = question.querySelector('input[type="radio"]:checked');
+                const commentTextarea = question.querySelector('textarea');
                 
                 if (selectedAnswer) {
-                    answers.push({
+                    let answerData = {
                         question: questionText,
-                        answer: selectedAnswer.value
-                    });
+                        answer: selectedAnswer.value,
+                        comment: commentTextarea ? commentTextarea.value.trim() : ''
+                    };
+                    answers.push(answerData);
                 }
             });
             
             // Telegram xabarini tayyorlash
-            let message = `📋 *YANGI SOROVNOMA JAVOBI*\n\n`;
-            message += `🏢 *Bo'lim:* ${department}\n\n`;
+            let message = `📋 *ЯНГИ СОРОВНОМА ЖАВОБИ*\n\n`;
+            message += `🏢 *Муассаса:* ${institution}\n`;
+            message += `🏛 *Бўлим:* ${department}\n\n`;
             message += `━━━━━━━━━━━━━━━━━━\n\n`;
             
             answers.forEach((item, index) => {
                 message += `❓ *${item.question}*\n`;
-                message += `💬 *Javob:* ${item.answer}\n\n`;
+                message += `💬 *Жавоб:* ${item.answer}\n`;
+                if (item.comment) {
+                    message += `📝 *Изоҳ:* ${item.comment}\n`;
+                }
+                message += `\n`;
             });
             
             message += `━━━━━━━━━━━━━━━━━━\n`;
-            message += `📅 *Sana:* ${new Date().toLocaleString('uz-UZ')}`;
+            message += `📅 *Сана:* ${new Date().toLocaleString('uz-UZ')}`;
             
             // Telegramga yuborish
             try {
@@ -282,11 +550,11 @@
                         document.getElementById('successMessage').style.display = 'none';
                     }, 3000);
                 } else {
-                    alert('Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.');
+                    alert('Хатолик юз берди. Илтимос, қайтадан уриниб кўринг.');
                 }
             } catch (error) {
-                console.error('Xatolik:', error);
-                alert('Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.');
+                console.error('Хатолик:', error);
+                alert('Хатолик юз берди. Илтимос, қайтадан уриниб кўринг.');
             }
         });
     </script>
