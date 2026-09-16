@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorovnoma</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .question-text {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            background: #f0f0f0;
+        }
+        
+        .option input[type="radio"] {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .success-message {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Sorovnoma</h1>
+        
+        <form id="surveyForm">
+            <!-- Bo'lim tanlash -->
+            <div class="section">
+                <label for="department">🏢 Bo'limingiz:</label>
+                <input type="text" id="department" name="department" placeholder="Bo'lim nomini kiriting..." required>
+            </div>
+            
+            <!-- Savollar shu yerga qo'shiladi -->
+            <div id="questionsContainer">
+                <!-- 1-savol -->
+                <div class="question">
+                    <div class="question-text">1. Bu yerda 1-savol bo'ladi</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q1_a1" name="question1" value="Javob 1" required>
+                            <label for="q1_a1">Javob 1</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1_a2" name="question1" value="Javob 2">
+                            <label for="q1_a2">Javob 2</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1_a3" name="question1" value="Javob 3">
+                            <label for="q1_a3">Javob 3</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2-savol -->
+                <div class="question">
+                    <div class="question-text">2. Bu yerda 2-savol bo'ladi</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q2_a1" name="question2" value="Javob 1" required>
+                            <label for="q2_a1">Javob 1</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2_a2" name="question2" value="Javob 2">
+                            <label for="q2_a2">Javob 2</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2_a3" name="question2" value="Javob 3">
+                            <label for="q2_a3">Javob 3</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit">📤 Yuborish</button>
+            
+            <div class="success-message" id="successMessage">
+                ✅ Sorovnoma muvaffaqiyatli yuborildi!
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Telegram Bot sozlamalari
+        const BOT_TOKEN = '8587609501:AAGIDbNAZZb4TaCpWWNFR0dV4x0gB8ltpU4';
+        const CHAT_ID = '-5536648978';
+        
+        document.getElementById('surveyForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Ma'lumotlarni yig'ish
+            const department = document.getElementById('department').value;
+            
+            // Javoblarni yig'ish
+            const answers = [];
+            const questions = document.querySelectorAll('.question');
+            
+            questions.forEach((question, index) => {
+                const questionText = question.querySelector('.question-text').textContent;
+                const selectedAnswer = question.querySelector('input[type="radio"]:checked');
+                
+                if (selectedAnswer) {
+                    answers.push({
+                        question: questionText,
+                        answer: selectedAnswer.value
+                    });
+                }
+            });
+            
+            // Telegram xabarini tayyorlash
+            let message = `📋 *YANGI SOROVNOMA JAVOBI*\n\n`;
+            message += `🏢 *Bo'lim:* ${department}\n\n`;
+            message += `━━━━━━━━━━━━━━━━━━\n\n`;
+            
+            answers.forEach((item, index) => {
+                message += `❓ *${item.question}*\n`;
+                message += `💬 *Javob:* ${item.answer}\n\n`;
+            });
+            
+            message += `━━━━━━━━━━━━━━━━━━\n`;
+            message += `📅 *Sana:* ${new Date().toLocaleString('uz-UZ')}`;
+            
+            // Telegramga yuborish
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                if (response.ok) {
+                    document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('surveyForm').reset();
+                    
+                    setTimeout(() => {
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 3000);
+                } else {
+                    alert('Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.');
+                }
+            } catch (error) {
+                console.error('Xatolik:', error);
+                alert('Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.');
+            }
+        });
+    </script>
+</body>
+</html>
