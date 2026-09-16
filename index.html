@@ -42,7 +42,7 @@
             margin-bottom: 30px;
         }
         
-        label {
+        label.field-label {
             display: block;
             margin-bottom: 10px;
             color: #333;
@@ -106,11 +106,17 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
+            border: 2px solid transparent;
         }
         
         .option:hover {
             background: #f0f0f0;
             transform: translateX(5px);
+        }
+        
+        .option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
         }
         
         .option input[type="radio"] {
@@ -119,14 +125,15 @@
             height: 20px;
             cursor: pointer;
             flex-shrink: 0;
+            pointer-events: none;
         }
         
-        .option label {
-            margin: 0;
+        .option span {
             cursor: pointer;
             font-weight: normal;
             font-size: 15px;
             line-height: 1.5;
+            flex: 1;
         }
         
         .comment-section {
@@ -137,6 +144,7 @@
             font-size: 14px;
             color: #666;
             margin-bottom: 8px;
+            display: block;
         }
         
         button {
@@ -162,6 +170,12 @@
             transform: translateY(0);
         }
         
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
         .success-message {
             display: none;
             background: #4caf50;
@@ -171,6 +185,49 @@
             text-align: center;
             margin-top: 20px;
             font-weight: 600;
+        }
+        
+        .error-message {
+            display: none;
+            background: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff3cd;
+            border-radius: 10px;
+            border: 2px solid #ffc107;
+            text-align: center;
+        }
+        
+        .contact-info p {
+            font-size: 16px;
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info a {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .contact-info a:hover {
+            background: #218838;
+            transform: translateY(-2px);
         }
         
         @media (max-width: 600px) {
@@ -201,7 +258,7 @@
             
             <!-- Bo'lim -->
             <div class="section">
-                <label for="department">🏢 Бўлим:</label>
+                <label class="field-label" for="department"> Бўлим:</label>
                 <input type="text" id="department" name="department" placeholder="Бўлим номини киритинг..." required>
             </div>
             
@@ -209,25 +266,25 @@
             <div class="question">
                 <div class="question-text">2. Раҳбарият ёки масъул ходимлар томонидан ходимларга нисбатан босим, қўрқитиш, таҳдид, ҳақорат, психологик босим, ёки қўпол муомала ҳолатлари учрайдими?</div>
                 <div class="options">
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q2')">
                         <input type="radio" id="q2_a1" name="question2" value="Ҳеч қачон" required>
-                        <label for="q2_a1">Ҳеч қачон</label>
+                        <span>Ҳеч қачон</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q2')">
                         <input type="radio" id="q2_a2" name="question2" value="Камдан-кам">
-                        <label for="q2_a2">Камдан-кам</label>
+                        <span>Камдан-кам</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q2')">
                         <input type="radio" id="q2_a3" name="question2" value="Баъзан">
-                        <label for="q2_a3">Баъзан</label>
+                        <span>Баъзан</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q2')">
                         <input type="radio" id="q2_a4" name="question2" value="Тез-тез">
-                        <label for="q2_a4">Тез-тез</label>
+                        <span>Тез-тез</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q2')">
                         <input type="radio" id="q2_a5" name="question2" value="Доимий">
-                        <label for="q2_a5">Доимий</label>
+                        <span>Доимий</span>
                     </div>
                 </div>
                 <div class="comment-section">
@@ -240,21 +297,21 @@
             <div class="question">
                 <div class="question-text">3. Иш тақсимоти, навбатчилик, таътил, мукофот, устама ёки рағбатлантиришда адолатсизлик ёки таниш-билишчилик ҳолатлари борми?</div>
                 <div class="options">
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q3')">
                         <input type="radio" id="q3_a1" name="question3" value="Ҳа" required>
-                        <label for="q3_a1">Ҳа</label>
+                        <span>Ҳа</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q3')">
                         <input type="radio" id="q3_a2" name="question3" value="Йўқ">
-                        <label for="q3_a2">Йўқ</label>
+                        <span>Йўқ</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q3')">
                         <input type="radio" id="q3_a3" name="question3" value="Баъзи ҳолатларда">
-                        <label for="q3_a3">Баъзи ҳолатларда</label>
+                        <span>Баъзи ҳолатларда</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q3')">
                         <input type="radio" id="q3_a4" name="question3" value="Гувоҳ бўлганман">
-                        <label for="q3_a4">Гувоҳ бўлганман</label>
+                        <span>Гувоҳ бўлганман</span>
                     </div>
                 </div>
                 <div class="comment-section">
@@ -267,21 +324,21 @@
             <div class="question">
                 <div class="question-text">4. Иш жойида коррупциявий ҳолатларга дуч келганмисиз? (пул ёки совға талаб қилиш, ишга қабул қилиш, таътил, навбатчилик, мукофот ёки бошқа имтиёзлар учун манфаат талаб қилиш)</div>
                 <div class="options">
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q4')">
                         <input type="radio" id="q4_a1" name="question4" value="Ҳа" required>
-                        <label for="q4_a1">Ҳа</label>
+                        <span>Ҳа</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q4')">
                         <input type="radio" id="q4_a2" name="question4" value="Йўқ">
-                        <label for="q4_a2">Йўқ</label>
+                        <span>Йўқ</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q4')">
                         <input type="radio" id="q4_a3" name="question4" value="Шубҳаланаман">
-                        <label for="q4_a3">Шубҳаланаман</label>
+                        <span>Шубҳаланаман</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q4')">
                         <input type="radio" id="q4_a4" name="question4" value="Гувоҳ бўлганман">
-                        <label for="q4_a4">Гувоҳ бўлганман</label>
+                        <span>Гувоҳ бўлганман</span>
                     </div>
                 </div>
                 <div class="comment-section">
@@ -294,17 +351,17 @@
             <div class="question">
                 <div class="question-text">5. Меҳнат ҳуқуқларингиз бузилган ёки меҳнат қонунчилигига зид ҳолатларни кузатганмисиз?</div>
                 <div class="options">
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q5')">
                         <input type="radio" id="q5_a1" name="question5" value="Ҳа" required>
-                        <label for="q5_a1">Ҳа</label>
+                        <span>а</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q5')">
                         <input type="radio" id="q5_a2" name="question5" value="Йўқ">
-                        <label for="q5_a2">Йўқ</label>
+                        <span>Йўқ</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q5')">
                         <input type="radio" id="q5_a3" name="question5" value="Баъзи ҳолатларда">
-                        <label for="q5_a3">Баъзи ҳолатларда</label>
+                        <span>Баъзи ҳолатларда</span>
                     </div>
                 </div>
                 <div class="comment-section">
@@ -317,21 +374,21 @@
             <div class="question">
                 <div class="question-text">6. Муаммо ёки эътироз билан раҳбариятга мурожаат қилган ходимга кейинчалик босим ёки таъқиб ўтказилиши ҳолатлари борми?</div>
                 <div class="options">
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q6')">
                         <input type="radio" id="q6_a1" name="question6" value="Ҳа" required>
-                        <label for="q6_a1">Ҳа</label>
+                        <span>Ҳа</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q6')">
                         <input type="radio" id="q6_a2" name="question6" value="Йўқ">
-                        <label for="q6_a2">Йўқ</label>
+                        <span>Йўқ</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q6')">
                         <input type="radio" id="q6_a3" name="question6" value="Гувоҳ бўлганман">
-                        <label for="q6_a3">Гувоҳ бўлганман</label>
+                        <span>Гувоҳ бўлганман</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q6')">
                         <input type="radio" id="q6_a4" name="question6" value="Билмайман">
-                        <label for="q6_a4">Билмайман</label>
+                        <span>Билмайман</span>
                     </div>
                 </div>
             </div>
@@ -340,21 +397,21 @@
             <div class="question">
                 <div class="question-text">7. Ходимлар ўз ҳуқуқлари бузилганда раҳбарият ёки касаба уюшмасига эркин мурожаат қила оладими?</div>
                 <div class="options">
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q7')">
                         <input type="radio" id="q7_a1" name="question7" value="Ҳа, бемалол" required>
-                        <label for="q7_a1">Ҳа, бемалол</label>
+                        <span>Ҳа, бемалол</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q7')">
                         <input type="radio" id="q7_a2" name="question7" value="Қисман">
-                        <label for="q7_a2">Қисман</label>
+                        <span>Қисман</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q7')">
                         <input type="radio" id="q7_a3" name="question7" value="Йўқ, қўрқаман">
-                        <label for="q7_a3">Йўқ, қўрқаман</label>
+                        <span>Йўқ, қўрқаман</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q7')">
                         <input type="radio" id="q7_a4" name="question7" value="Мурожаат қилсам, босим бўлишидан хавотирдаман">
-                        <label for="q7_a4">Мурожаат қилсам, босим бўлишидан хавотирдаман</label>
+                        <span>Мурожаат қилсам, босим бўлишидан хавотирдаман</span>
                     </div>
                 </div>
             </div>
@@ -363,21 +420,21 @@
             <div class="question">
                 <div class="question-text">8. Жамоада низо, жанжал, камситиш, психологик босим, агрессив хатти-ҳаракат ёки хавфсизликка таҳдид қилувчи ҳолатлар кузатилганми?</div>
                 <div class="options">
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q8')">
                         <input type="radio" id="q8_a1" name="question8" value="Ҳа" required>
-                        <label for="q8_a1">Ҳа</label>
+                        <span>Ҳа</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q8')">
                         <input type="radio" id="q8_a2" name="question8" value="Йўқ">
-                        <label for="q8_a2">Йўқ</label>
+                        <span>Йўқ</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q8')">
                         <input type="radio" id="q8_a3" name="question8" value="Баъзан">
-                        <label for="q8_a3">Баъзан</label>
+                        <span>Баъзан</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q8')">
                         <input type="radio" id="q8_a4" name="question8" value="Жиддий ҳолат бўлган">
-                        <label for="q8_a4">Жиддий ҳолат бўлган</label>
+                        <span>Жиддий ҳолат бўлган</span>
                     </div>
                 </div>
                 <div class="comment-section">
@@ -390,13 +447,13 @@
             <div class="question">
                 <div class="question-text">9. Сизга маълум бўлган, лекин ҳозиргача раҳбариятга етказилмаган жиддий ҳолат борми?</div>
                 <div class="options">
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q9')">
                         <input type="radio" id="q9_a1" name="question9" value="Ҳа" required>
-                        <label for="q9_a1">Ҳа</label>
+                        <span>Ҳа</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q9')">
                         <input type="radio" id="q9_a2" name="question9" value="Йўқ">
-                        <label for="q9_a2">Йўқ</label>
+                        <span>Йўқ</span>
                     </div>
                 </div>
                 <div class="comment-section">
@@ -409,25 +466,25 @@
             <div class="question">
                 <div class="question-text">10. Ходимларни иш вақтидан ташқари, дам олиш ёки белгиланган иш вақтидан ташқари ҳолатларда асоссиз равишда ишга жалб қилиш ҳолатлари учрайдими?</div>
                 <div class="options">
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q10')">
                         <input type="radio" id="q10_a1" name="question10" value="Йўқ" required>
-                        <label for="q10_a1">Йўқ</label>
+                        <span>Йўқ</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q10')">
                         <input type="radio" id="q10_a2" name="question10" value="Камдан-кам">
-                        <label for="q10_a2">Камдан-кам</label>
+                        <span>Камдан-кам</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q10')">
                         <input type="radio" id="q10_a3" name="question10" value="Баъзан">
-                        <label for="q10_a3">Баъзан</label>
+                        <span>Баъзан</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q10')">
                         <input type="radio" id="q10_a4" name="question10" value="Тез-тез">
-                        <label for="q10_a4">Тез-тез</label>
+                        <span>Тез-тез</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q10')">
                         <input type="radio" id="q10_a5" name="question10" value="Доимий равишда">
-                        <label for="q10_a5">Доимий равишда</label>
+                        <span>Доимий равишда</span>
                     </div>
                 </div>
                 <div class="comment-section">
@@ -440,29 +497,29 @@
             <div class="question">
                 <div class="question-text">11. Ходимлар ўртасида кредит ёки қарз масалалари билан боғлиқ муаммолар мавжудми?</div>
                 <div class="options">
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q11')">
                         <input type="radio" id="q11_a1" name="question11" value="Йўқ" required>
-                        <label for="q11_a1">Йўқ</label>
+                        <span>Йўқ</span>
                     </div>
-                    <div class="option">
-                        <input type="radio" id="q11_a2" name="question11" value="Ҳа, бошқа ходимга кредит учун кафил бўлганман">
-                        <label for="q11_a2">Ҳа, бошқа ходимга кредит учун кафил бўлганман</label>
+                    <div class="option" onclick="selectOption(this, 'q11')">
+                        <input type="radio" id="q11_a2" name="question11" value="а, бошқа ходимга кредит учун кафил бўлганман">
+                        <span>Ҳа, бошқа ходимга кредит учун кафил бўлганман</span>
                     </div>
-                    <div class="option">
-                        <input type="radio" id="q11_a3" name="question11" value="Ҳа, кафиллик сабабли қарздорлик муаммоси юзага келган">
-                        <label for="q11_a3">Ҳа, кафиллик сабабли қарздорлик муаммоси юзага келган</label>
+                    <div class="option" onclick="selectOption(this, 'q11')">
+                        <input type="radio" id="q11_a3" name="question11" value="а, кафиллик сабабли қарздорлик муаммоси юзага келган">
+                        <span>Ҳа, кафиллик сабабли қарздорлик муаммоси юзага келган</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q11')">
                         <input type="radio" id="q11_a4" name="question11" value="Ўз пулимни бошқа ходимдан қайтариб ололмаяпман">
-                        <label for="q11_a4">Ўз пулимни бошқа ходимдан қайтариб ололмаяпман</label>
+                        <span>Ўз пулимни бошқа ходимдан қайтариб ололмаяпман</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q11')">
                         <input type="radio" id="q11_a5" name="question11" value="Жамоада бошқа қарздорлик билан боғлиқ низо мавжуд">
-                        <label for="q11_a5">Жамоада бошқа қарздорлик билан боғлиқ низо мавжуд</label>
+                        <span>Жамоада бошқа қарздорлик билан боғлиқ низо мавжуд</span>
                     </div>
-                    <div class="option">
+                    <div class="option" onclick="selectOption(this, 'q11')">
                         <input type="radio" id="q11_a6" name="question11" value="Бундай ҳолатга гувоҳ бўлганман">
-                        <label for="q11_a6">Бундай ҳолатга гувоҳ бўлганман</label>
+                        <span>Бундай ҳолатга гувоҳ бўлганман</span>
                     </div>
                 </div>
                 <div class="comment-section">
@@ -471,10 +528,20 @@
                 </div>
             </div>
             
-            <button type="submit">📤 Юбориш</button>
+            <button type="submit" id="submitBtn">📤 Юбориш</button>
             
             <div class="success-message" id="successMessage">
                 ✅ Соровнома муваффақиятли юборилди!
+            </div>
+            
+            <div class="error-message" id="errorMessage">
+                 Хатолик юз берди. Илтимос, қайтадан уриниб кўринг.
+            </div>
+            
+            <!-- Qo'ng'iroq qilish uchun -->
+            <div class="contact-info">
+                <p>📞 Агар сайт ишламаса, қўнғироқ қилинг:</p>
+                <a href="tel:+998905624429">📱 +998 90 562 44 29</a>
             </div>
         </form>
     </div>
@@ -484,8 +551,40 @@
         const BOT_TOKEN = '8587609501:AAGIDbNAZZb4TaCpWWNFR0dV4x0gB8ltpU4';
         const CHAT_ID = '-5536648978';
         
+        // Radio button tanlash funksiyasi
+        function selectOption(element, questionPrefix) {
+            // Shu savolning barcha option laridan selected class ni olib tashlash
+            const parent = element.parentElement;
+            const allOptions = parent.querySelectorAll('.option');
+            allOptions.forEach(opt => opt.classList.remove('selected'));
+            
+            // Tanlangan option ga selected class qo'shish
+            element.classList.add('selected');
+            
+            // Radio button ni tanlash
+            const radio = element.querySelector('input[type="radio"]');
+            radio.checked = true;
+        }
+        
+        // Matnni Telegram Markdown uchun tozalash
+        function escapeMarkdown(text) {
+            return text.replace(/[_*\[\]()~`>#\+\-=|{}.!\\]/g, '\\$&');
+        }
+        
         document.getElementById('surveyForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Xabarlarni yashirish
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Tugmani o'chirish
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Юборилмоқда...';
             
             // Ma'lumotlarni yig'ish
             const institution = document.getElementById('q1_institution').value;
@@ -510,23 +609,23 @@
                 }
             });
             
-            // Telegram xabarini tayyorlash
-            let message = `📋 *ЯНГИ СОРОВНОМА ЖАВОБИ*\n\n`;
-            message += `🏢 *Муассаса:* ${institution}\n`;
-            message += `🏛 *Бўлим:* ${department}\n\n`;
+            // Telegram xabarini tayyorlash (Markdownsiz, oddiy matn)
+            let message = `📋 ЯНГИ СОРОВНОМА ЖАВОБИ\n\n`;
+            message += ` Муассаса: ${institution}\n`;
+            message += `🏛 Бўлим: ${department}\n\n`;
             message += `━━━━━━━━━━━━━━━━━━\n\n`;
             
             answers.forEach((item, index) => {
-                message += `❓ *${item.question}*\n`;
-                message += `💬 *Жавоб:* ${item.answer}\n`;
+                message += ` ${item.question}\n`;
+                message += `💬 Жавоб: ${item.answer}\n`;
                 if (item.comment) {
-                    message += `📝 *Изоҳ:* ${item.comment}\n`;
+                    message += `📝 Изоҳ: ${item.comment}\n`;
                 }
                 message += `\n`;
             });
             
             message += `━━━━━━━━━━━━━━━━━━\n`;
-            message += `📅 *Сана:* ${new Date().toLocaleString('uz-UZ')}`;
+            message += ` Сана: ${new Date().toLocaleString('uz-UZ')}`;
             
             // Telegramga yuborish
             try {
@@ -537,24 +636,40 @@
                     },
                     body: JSON.stringify({
                         chat_id: CHAT_ID,
-                        text: message,
-                        parse_mode: 'Markdown'
+                        text: message
                     })
                 });
                 
-                if (response.ok) {
-                    document.getElementById('successMessage').style.display = 'block';
+                const data = await response.json();
+                
+                if (response.ok && data.ok) {
+                    successMessage.style.display = 'block';
                     document.getElementById('surveyForm').reset();
                     
+                    // Barcha selected class larni olib tashlash
+                    document.querySelectorAll('.option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
                     setTimeout(() => {
-                        document.getElementById('successMessage').style.display = 'none';
-                    }, 3000);
+                        successMessage.style.display = 'none';
+                    }, 5000);
                 } else {
-                    alert('Хатолик юз берди. Илтимос, қайтадан уриниб кўринг.');
+                    console.error('Telegram xatosi:', data);
+                    errorMessage.style.display = 'block';
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 5000);
                 }
             } catch (error) {
-                console.error('Хатолик:', error);
-                alert('Хатолик юз берди. Илтимос, қайтадан уриниб кўринг.');
+                console.error('Xatolik:', error);
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '📤 Юбориш';
             }
         });
     </script>
