@@ -83,6 +83,11 @@
             border-left: 4px solid #667eea;
         }
         
+        .question.error {
+            border-left-color: #f44336;
+            background: #fff5f5;
+        }
+        
         .question-text {
             font-size: 17px;
             color: #333;
@@ -144,6 +149,21 @@
             font-size: 14px;
             color: #666;
             margin-bottom: 8px;
+            display: block;
+        }
+        
+        .validation-hint {
+            display: none;
+            color: #f44336;
+            font-size: 13px;
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #fff5f5;
+            border-radius: 6px;
+            border-left: 3px solid #f44336;
+        }
+        
+        .validation-hint.show {
             display: block;
         }
         
@@ -230,6 +250,17 @@
             transform: translateY(-2px);
         }
         
+        .info-box {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+            color: #0d47a1;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
         @media (max-width: 600px) {
             .container {
                 padding: 25px;
@@ -249,26 +280,30 @@
     <div class="container">
         <h1>📋 Sorovnoma</h1>
         
+        <div class="info-box">
+            ️ <strong>Эътибор:</strong> Ҳар бир саволда жавобни белгилаш <strong>ёки</strong> қисқача баён ёзиш мумкин. Агар жавоб белгиланмаса, изоҳ ёзилган бўлиши шарт.
+        </div>
+        
         <form id="surveyForm">
             <!-- 1-savol: Muassasa nomi -->
-            <div class="question">
+            <div class="question" id="q1-block">
                 <div class="question-text">1. Сиз ишлайдиган муассаса:</div>
                 <input type="text" id="q1_institution" name="q1_institution" placeholder="Муассаса номини киритинг..." required>
             </div>
             
             <!-- Bo'lim -->
-            <div class="section">
+            <div class="section" id="dept-block">
                 <label class="field-label" for="department">🏛 Бўлим:</label>
                 <input type="text" id="department" name="department" placeholder="Бўлим номини киритинг..." required>
             </div>
             
             <!-- 2-savol -->
-            <div class="question">
+            <div class="question" id="q2-block">
                 <div class="question-text">2. Раҳбарият ёки масъул ходимлар томонидан ходимларга нисбатан босим, қўрқитиш, таҳдид, ҳақорат, психологик босим, ёки қўпол муомала ҳолатлари учрайдими?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q2_a1" name="question2" value="Ҳеч қачон" required>
-                        <span>Ҳеч қачон</span>
+                        <input type="radio" id="q2_a1" name="question2" value="еч қачон">
+                        <span>еч қачон</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
                         <input type="radio" id="q2_a2" name="question2" value="Камдан-кам">
@@ -291,14 +326,15 @@
                     <label for="q2_comment">Қисқача баён қилинг:</label>
                     <textarea id="q2_comment" name="q2_comment" placeholder="Ихтиёрий..."></textarea>
                 </div>
+                <div class="validation-hint" id="q2-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
             <!-- 3-savol -->
-            <div class="question">
+            <div class="question" id="q3-block">
                 <div class="question-text">3. Иш тақсимоти, навбатчилик, таътил, мукофот, устама ёки рағбатлантиришда адолатсизлик ёки таниш-билишчилик ҳолатлари борми?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q3_a1" name="question3" value="Ҳа" required>
+                        <input type="radio" id="q3_a1" name="question3" value="а">
                         <span>Ҳа</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -318,14 +354,15 @@
                     <label for="q3_comment">Қисқача баён қилинг:</label>
                     <textarea id="q3_comment" name="q3_comment" placeholder="Ихтиёрий..."></textarea>
                 </div>
+                <div class="validation-hint" id="q3-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
             <!-- 4-savol -->
-            <div class="question">
+            <div class="question" id="q4-block">
                 <div class="question-text">4. Иш жойида коррупциявий ҳолатларга дуч келганмисиз? (пул ёки совға талаб қилиш, ишга қабул қилиш, таътил, навбатчилик, мукофот ёки бошқа имтиёзлар учун манфаат талаб қилиш)</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q4_a1" name="question4" value="а" required>
+                        <input type="radio" id="q4_a1" name="question4" value="а">
                         <span>Ҳа</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -345,15 +382,16 @@
                     <label for="q4_comment">Қисқача баён қилинг:</label>
                     <textarea id="q4_comment" name="q4_comment" placeholder="Ихтиёрий..."></textarea>
                 </div>
+                <div class="validation-hint" id="q4-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
             <!-- 5-savol -->
-            <div class="question">
+            <div class="question" id="q5-block">
                 <div class="question-text">5. Меҳнат ҳуқуқларингиз бузилган ёки меҳнат қонунчилигига зид ҳолатларни кузатганмисиз?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q5_a1" name="question5" value="Ҳа" required>
-                        <span>а</span>
+                        <input type="radio" id="q5_a1" name="question5" value="Ҳа">
+                        <span>Ҳа</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
                         <input type="radio" id="q5_a2" name="question5" value="Йўқ">
@@ -368,15 +406,16 @@
                     <label for="q5_comment">Қисқача баён қилинг:</label>
                     <textarea id="q5_comment" name="q5_comment" placeholder="Ихтиёрий..."></textarea>
                 </div>
+                <div class="validation-hint" id="q5-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
             <!-- 6-savol -->
-            <div class="question">
+            <div class="question" id="q6-block">
                 <div class="question-text">6. Муаммо ёки эътироз билан раҳбариятга мурожаат қилган ходимга кейинчалик босим ёки таъқиб ўтказилиши ҳолатлари борми?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q6_a1" name="question6" value="Ҳа" required>
-                        <span>Ҳа</span>
+                        <input type="radio" id="q6_a1" name="question6" value="Ҳа">
+                        <span>а</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
                         <input type="radio" id="q6_a2" name="question6" value="Йўқ">
@@ -391,14 +430,15 @@
                         <span>Билмайман</span>
                     </div>
                 </div>
+                <div class="validation-hint" id="q6-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
             <!-- 7-savol -->
-            <div class="question">
+            <div class="question" id="q7-block">
                 <div class="question-text">7. Ходимлар ўз ҳуқуқлари бузилганда раҳбарият ёки касаба уюшмасига эркин мурожаат қила оладими?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q7_a1" name="question7" value="Ҳа, бемалол" required>
+                        <input type="radio" id="q7_a1" name="question7" value="а, бемалол">
                         <span>Ҳа, бемалол</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -414,14 +454,15 @@
                         <span>Мурожаат қилсам, босим бўлишидан хавотирдаман</span>
                     </div>
                 </div>
+                <div class="validation-hint" id="q7-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
             <!-- 8-savol -->
-            <div class="question">
+            <div class="question" id="q8-block">
                 <div class="question-text">8. Жамоада низо, жанжал, камситиш, психологик босим, агрессив хатти-ҳаракат ёки хавфсизликка таҳдид қилувчи ҳолатлар кузатилганми?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q8_a1" name="question8" value="Ҳа" required>
+                        <input type="radio" id="q8_a1" name="question8" value="Ҳа">
                         <span>Ҳа</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -441,14 +482,15 @@
                     <label for="q8_comment">Қисқача баён қилинг:</label>
                     <textarea id="q8_comment" name="q8_comment" placeholder="Ихтиёрий..."></textarea>
                 </div>
+                <div class="validation-hint" id="q8-hint">️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
             <!-- 9-savol -->
-            <div class="question">
+            <div class="question" id="q9-block">
                 <div class="question-text">9. Сизга маълум бўлган, лекин ҳозиргача раҳбариятга етказилмаган жиддий ҳолат борми?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q9_a1" name="question9" value="Ҳа" required>
+                        <input type="radio" id="q9_a1" name="question9" value="Ҳа">
                         <span>Ҳа</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -460,14 +502,15 @@
                     <label for="q9_comment">Қисқача баён қилинг:</label>
                     <textarea id="q9_comment" name="q9_comment" placeholder="Ихтиёрий..."></textarea>
                 </div>
+                <div class="validation-hint" id="q9-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
             <!-- 10-savol -->
-            <div class="question">
+            <div class="question" id="q10-block">
                 <div class="question-text">10. Ходимларни иш вақтидан ташқари, дам олиш ёки белгиланган иш вақтидан ташқари ҳолатларда асоссиз равишда ишга жалб қилиш ҳолатлари учрайдими?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q10_a1" name="question10" value="Йўқ" required>
+                        <input type="radio" id="q10_a1" name="question10" value="Йўқ">
                         <span>Йўқ</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -491,14 +534,15 @@
                     <label for="q10_comment">Қисқача баён қилинг:</label>
                     <textarea id="q10_comment" name="q10_comment" placeholder="Ихтиёрий..."></textarea>
                 </div>
+                <div class="validation-hint" id="q10-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
             <!-- 11-savol -->
-            <div class="question">
+            <div class="question" id="q11-block">
                 <div class="question-text">11. Ходимлар ўртасида кредит ёки қарз масалалари билан боғлиқ муаммолар мавжудми?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q11_a1" name="question11" value="Йўқ" required>
+                        <input type="radio" id="q11_a1" name="question11" value="Йўқ">
                         <span>Йўқ</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -526,6 +570,7 @@
                     <label for="q11_comment">Қисқача баён қилинг:</label>
                     <textarea id="q11_comment" name="q11_comment" placeholder="Ихтиёрий..."></textarea>
                 </div>
+                <div class="validation-hint" id="q11-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
             <button type="submit" id="submitBtn">📤 Юбориш</button>
@@ -538,10 +583,9 @@
                 ❌ Хатолик юз берди. Илтимос, қайтадан уриниб кўринг.
             </div>
             
-            <!-- Qo'ng'iroq qilish uchun -->
             <div class="contact-info">
                 <p>📞 Агар сайт ишламаса, қўнғироқ қилинг:</p>
-                <a href="tel:+998905624429">📱 +998 90 562 44 29</a>
+                <a href="tel:+998905624429"> +998 90 562 44 29</a>
             </div>
         </form>
     </div>
@@ -561,7 +605,27 @@
             
             const radio = element.querySelector('input[type="radio"]');
             radio.checked = true;
+            
+            // Xato xabarini yashirish
+            const questionBlock = element.closest('.question');
+            if (questionBlock) {
+                questionBlock.classList.remove('error');
+                const hint = questionBlock.querySelector('.validation-hint');
+                if (hint) hint.classList.remove('show');
+            }
         }
+        
+        // Textarea yozilganda xatoni yashirish
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                const questionBlock = this.closest('.question');
+                if (questionBlock && this.value.trim()) {
+                    questionBlock.classList.remove('error');
+                    const hint = questionBlock.querySelector('.validation-hint');
+                    if (hint) hint.classList.remove('show');
+                }
+            });
+        });
         
         // Formani yuborish
         document.getElementById('surveyForm').addEventListener('submit', async function(e) {
@@ -575,46 +639,104 @@
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
             
+            // Barcha xato xabarlarini yashirish
+            document.querySelectorAll('.validation-hint').forEach(h => h.classList.remove('show'));
+            document.querySelectorAll('.question').forEach(q => q.classList.remove('error'));
+            
+            // Ma'lumotlarni yig'ish
+            const institution = document.getElementById('q1_institution').value.trim();
+            const department = document.getElementById('department').value.trim();
+            
+            // Validatsiya - muassasa va bo'lim
+            if (!institution) {
+                alert('Муассаса номини киритинг!');
+                document.getElementById('q1_institution').focus();
+                return;
+            }
+            if (!department) {
+                alert('Бўлим номини киритинг!');
+                document.getElementById('department').focus();
+                return;
+            }
+            
+            // Har bir savolni tekshirish: javob YOKI izoh bo'lishi kerak
+            const questionBlocks = [
+                { id: 'q2-block', name: 'question2', comment: 'q2_comment', hint: 'q2-hint' },
+                { id: 'q3-block', name: 'question3', comment: 'q3_comment', hint: 'q3-hint' },
+                { id: 'q4-block', name: 'question4', comment: 'q4_comment', hint: 'q4-hint' },
+                { id: 'q5-block', name: 'question5', comment: 'q5_comment', hint: 'q5-hint' },
+                { id: 'q6-block', name: 'question6', comment: null, hint: 'q6-hint' },
+                { id: 'q7-block', name: 'question7', comment: null, hint: 'q7-hint' },
+                { id: 'q8-block', name: 'question8', comment: 'q8_comment', hint: 'q8-hint' },
+                { id: 'q9-block', name: 'question9', comment: 'q9_comment', hint: 'q9-hint' },
+                { id: 'q10-block', name: 'question10', comment: 'q10_comment', hint: 'q10-hint' },
+                { id: 'q11-block', name: 'question11', comment: 'q11_comment', hint: 'q11-hint' }
+            ];
+            
+            let hasError = false;
+            let firstErrorBlock = null;
+            
+            questionBlocks.forEach(q => {
+                const selectedAnswer = document.querySelector(`input[name="${q.name}"]:checked`);
+                const commentField = q.comment ? document.getElementById(q.comment) : null;
+                const commentValue = commentField ? commentField.value.trim() : '';
+                
+                const block = document.getElementById(q.id);
+                const hint = document.getElementById(q.hint);
+                
+                // Agar javob ham, izoh ham bo'sh bo'lsa - xato
+                if (!selectedAnswer && !commentValue) {
+                    hasError = true;
+                    if (block) block.classList.add('error');
+                    if (hint) hint.classList.add('show');
+                    if (!firstErrorBlock) firstErrorBlock = block;
+                } else {
+                    // Toza holat
+                    if (block) block.classList.remove('error');
+                    if (hint) hint.classList.remove('show');
+                }
+            });
+            
+            if (hasError) {
+                // Birinchi xatoga scroll qilish
+                if (firstErrorBlock) {
+                    firstErrorBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = '⚠️ Ҳар бир саволда жавобни белгиланг ёки қисқача баён ёзинг!';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
+                return;
+            }
+            
             // Tugmani o'chirish
             submitBtn.disabled = true;
             submitBtn.textContent = '⏳ Юборилмоқда...';
             
             try {
-                // Ma'lumotlarni yig'ish
-                const institution = document.getElementById('q1_institution').value.trim();
-                const department = document.getElementById('department').value.trim();
-                
-                // Validatsiya
-                if (!institution) {
-                    throw new Error('Муассаса номини киритинг!');
-                }
-                if (!department) {
-                    throw new Error('Бўлим номини киритинг!');
-                }
-                
                 // Javoblarni yig'ish
                 const answers = [];
-                const questions = document.querySelectorAll('.question');
                 
-                questions.forEach((question, index) => {
-                    const questionText = question.querySelector('.question-text').textContent;
-                    const selectedAnswer = question.querySelector('input[type="radio"]:checked');
-                    const commentTextarea = question.querySelector('textarea');
+                questionBlocks.forEach(q => {
+                    const questionBlock = document.getElementById(q.id);
+                    const questionText = questionBlock.querySelector('.question-text').textContent;
+                    const selectedAnswer = document.querySelector(`input[name="${q.name}"]:checked`);
+                    const commentField = q.comment ? document.getElementById(q.comment) : null;
+                    const commentValue = commentField ? commentField.value.trim() : '';
                     
-                    if (selectedAnswer) {
-                        let answerData = {
-                            question: questionText,
-                            answer: selectedAnswer.value,
-                            comment: commentTextarea ? commentTextarea.value.trim() : ''
-                        };
-                        answers.push(answerData);
-                    }
+                    let answerData = {
+                        question: questionText,
+                        answer: selectedAnswer ? selectedAnswer.value : '(белгиланмаган)',
+                        comment: commentValue
+                    };
+                    answers.push(answerData);
                 });
                 
                 // Telegram xabarini tayyorlash
                 let message = `📋 ЯНГИ СОРОВНОМА ЖАВОБИ\n\n`;
                 message += `🏢 Муассаса: ${institution}\n`;
-                message += ` Бўлим: ${department}\n\n`;
+                message += `🏛 Бўлим: ${department}\n\n`;
                 message += `━━━━━━━━━━━━━━━━━━\n\n`;
                 
                 answers.forEach((item, index) => {
@@ -627,7 +749,7 @@
                 });
                 
                 message += `━━━━━━━━━━━━━━━━━━\n`;
-                message += ` Сана: ${new Date().toLocaleString('uz-UZ')}`;
+                message += `📅 Сана: ${new Date().toLocaleString('uz-UZ')}`;
                 
                 console.log('Yuborilmoqda:', message);
                 
