@@ -325,7 +325,7 @@
                 <div class="question-text">4. Иш жойида коррупциявий ҳолатларга дуч келганмисиз? (пул ёки совға талаб қилиш, ишга қабул қилиш, таътил, навбатчилик, мукофот ёки бошқа имтиёзлар учун манфаат талаб қилиш)</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q4_a1" name="question4" value="Ҳа" required>
+                        <input type="radio" id="q4_a1" name="question4" value="а" required>
                         <span>Ҳа</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -353,7 +353,7 @@
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
                         <input type="radio" id="q5_a1" name="question5" value="Ҳа" required>
-                        <span>Ҳа</span>
+                        <span>а</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
                         <input type="radio" id="q5_a2" name="question5" value="Йўқ">
@@ -421,7 +421,7 @@
                 <div class="question-text">8. Жамоада низо, жанжал, камситиш, психологик босим, агрессив хатти-ҳаракат ёки хавфсизликка таҳдид қилувчи ҳолатлар кузатилганми?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q8_a1" name="question8" value="а" required>
+                        <input type="radio" id="q8_a1" name="question8" value="Ҳа" required>
                         <span>Ҳа</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -507,7 +507,7 @@
                     </div>
                     <div class="option" onclick="selectOption(this)">
                         <input type="radio" id="q11_a3" name="question11" value="Ҳа, кафиллик сабабли қарздорлик муаммоси юзага келган">
-                        <span>а, кафиллик сабабли қарздорлик муаммоси юзага келган</span>
+                        <span>Ҳа, кафиллик сабабли қарздорлик муаммоси юзага келган</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
                         <input type="radio" id="q11_a4" name="question11" value="Ўз пулимни бошқа ходимдан қайтариб ололмаяпман">
@@ -547,9 +547,9 @@
     </div>
 
     <script>
-        // Telegram Bot sozlamalari - YANGILANDI
+        // Telegram Bot sozlamalari
         const BOT_TOKEN = '8587609501:AAGIDbNAZZb4TaCpWWNFR0dV4x0gB8ltpU4';
-        const CHAT_ID = '-1004412790504'; // Yangi guruh ID
+        const CHAT_ID = '-1004412790504';
         
         // Radio button tanlash funksiyasi
         function selectOption(element) {
@@ -627,7 +627,7 @@
                 });
                 
                 message += `━━━━━━━━━━━━━━━━━━\n`;
-                message += `📅 Сана: ${new Date().toLocaleString('uz-UZ')}`;
+                message += ` Сана: ${new Date().toLocaleString('uz-UZ')}`;
                 
                 console.log('Yuborilmoqda:', message);
                 
@@ -654,7 +654,6 @@
                         opt.classList.remove('selected');
                     });
                     
-                    // Sahifani yuqoriga scroll qilish
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     
                     setTimeout(() => {
