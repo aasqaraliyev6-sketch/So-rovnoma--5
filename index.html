@@ -281,7 +281,7 @@
         <h1>📋 Sorovnoma</h1>
         
         <div class="info-box">
-            ️ <strong>Эътибор:</strong> Ҳар бир саволда жавобни белгилаш <strong>ёки</strong> қисқача баён ёзиш мумкин. Агар жавоб белгиланмаса, изоҳ ёзилган бўлиши шарт.
+            ⚠️ <strong>Эътибор:</strong> Ҳар бир саволда жавобни белгилаш <strong>ёки</strong> қисқача баён ёзиш мумкин. Агар жавоб белгиланмаса, изоҳ ёзилган бўлиши шарт.
         </div>
         
         <form id="surveyForm">
@@ -302,8 +302,8 @@
                 <div class="question-text">2. Раҳбарият ёки масъул ходимлар томонидан ходимларга нисбатан босим, қўрқитиш, таҳдид, ҳақорат, психологик босим, ёки қўпол муомала ҳолатлари учрайдими?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q2_a1" name="question2" value="еч қачон">
-                        <span>еч қачон</span>
+                        <input type="radio" id="q2_a1" name="question2" value="Ҳеч қачон">
+                        <span>Ҳеч қачон</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
                         <input type="radio" id="q2_a2" name="question2" value="Камдан-кам">
@@ -334,7 +334,7 @@
                 <div class="question-text">3. Иш тақсимоти, навбатчилик, таътил, мукофот, устама ёки рағбатлантиришда адолатсизлик ёки таниш-билишчилик ҳолатлари борми?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q3_a1" name="question3" value="а">
+                        <input type="radio" id="q3_a1" name="question3" value="Ҳа">
                         <span>Ҳа</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -362,7 +362,7 @@
                 <div class="question-text">4. Иш жойида коррупциявий ҳолатларга дуч келганмисиз? (пул ёки совға талаб қилиш, ишга қабул қилиш, таътил, навбатчилик, мукофот ёки бошқа имтиёзлар учун манфаат талаб қилиш)</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q4_a1" name="question4" value="а">
+                        <input type="radio" id="q4_a1" name="question4" value="Ҳа">
                         <span>Ҳа</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -409,13 +409,13 @@
                 <div class="validation-hint" id="q5-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
-            <!-- 6-savol -->
+            <!-- 6-savol (izoh yo'q) -->
             <div class="question" id="q6-block">
                 <div class="question-text">6. Муаммо ёки эътироз билан раҳбариятга мурожаат қилган ходимга кейинчалик босим ёки таъқиб ўтказилиши ҳолатлари борми?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
                         <input type="radio" id="q6_a1" name="question6" value="Ҳа">
-                        <span>а</span>
+                        <span>Ҳа</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
                         <input type="radio" id="q6_a2" name="question6" value="Йўқ">
@@ -430,15 +430,15 @@
                         <span>Билмайман</span>
                     </div>
                 </div>
-                <div class="validation-hint" id="q6-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
+                <div class="validation-hint" id="q6-hint">⚠️ Жавобни белгиланг</div>
             </div>
             
-            <!-- 7-savol -->
+            <!-- 7-savol (izoh yo'q) -->
             <div class="question" id="q7-block">
                 <div class="question-text">7. Ходимлар ўз ҳуқуқлари бузилганда раҳбарият ёки касаба уюшмасига эркин мурожаат қила оладими?</div>
                 <div class="options">
                     <div class="option" onclick="selectOption(this)">
-                        <input type="radio" id="q7_a1" name="question7" value="а, бемалол">
+                        <input type="radio" id="q7_a1" name="question7" value="Ҳа, бемалол">
                         <span>Ҳа, бемалол</span>
                     </div>
                     <div class="option" onclick="selectOption(this)">
@@ -454,7 +454,7 @@
                         <span>Мурожаат қилсам, босим бўлишидан хавотирдаман</span>
                     </div>
                 </div>
-                <div class="validation-hint" id="q7-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
+                <div class="validation-hint" id="q7-hint">⚠️ Жавобни белгиланг</div>
             </div>
             
             <!-- 8-savol -->
@@ -482,7 +482,7 @@
                     <label for="q8_comment">Қисқача баён қилинг:</label>
                     <textarea id="q8_comment" name="q8_comment" placeholder="Ихтиёрий..."></textarea>
                 </div>
-                <div class="validation-hint" id="q8-hint">️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
+                <div class="validation-hint" id="q8-hint">⚠️ Жавобни белгиланг ёки қисқача баён ёзинг</div>
             </div>
             
             <!-- 9-savol -->
@@ -589,7 +589,6 @@
             </div>
         </form>
     </div>
-
     <script>
         // Telegram Bot sozlamalari
         const BOT_TOKEN = '8587609501:AAGIDbNAZZb4TaCpWWNFR0dV4x0gB8ltpU4';
@@ -615,14 +614,24 @@
             }
         }
         
-        // Textarea yozilganda xatoni yashirish
+        // Textarea yozilganda: xatoni yashirish + radio belgilarni olib tashlash
         document.querySelectorAll('textarea').forEach(textarea => {
             textarea.addEventListener('input', function() {
                 const questionBlock = this.closest('.question');
-                if (questionBlock && this.value.trim()) {
-                    questionBlock.classList.remove('error');
-                    const hint = questionBlock.querySelector('.validation-hint');
-                    if (hint) hint.classList.remove('show');
+                if (questionBlock) {
+                    // Xatoni yashirish
+                    if (this.value.trim()) {
+                        questionBlock.classList.remove('error');
+                        const hint = questionBlock.querySelector('.validation-hint');
+                        if (hint) hint.classList.remove('show');
+                    }
+                    
+                    // Agar izoh yozilayotgan bo'lsa — radio belgilarni olib tashlash (sokin, hech qanday xabar chiqmaydi)
+                    if (this.value.trim().length > 0) {
+                        const radios = questionBlock.querySelectorAll('input[type="radio"]');
+                        radios.forEach(r => r.checked = false);
+                        questionBlock.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+                    }
                 }
             });
         });
@@ -659,7 +668,7 @@
                 return;
             }
             
-            // Har bir savolni tekshirish: javob YOKI izoh bo'lishi kerak
+            // Har bir savolni tekshirish
             const questionBlocks = [
                 { id: 'q2-block', name: 'question2', comment: 'q2_comment', hint: 'q2-hint' },
                 { id: 'q3-block', name: 'question3', comment: 'q3_comment', hint: 'q3-hint' },
@@ -691,14 +700,12 @@
                     if (hint) hint.classList.add('show');
                     if (!firstErrorBlock) firstErrorBlock = block;
                 } else {
-                    // Toza holat
                     if (block) block.classList.remove('error');
                     if (hint) hint.classList.remove('show');
                 }
             });
             
             if (hasError) {
-                // Birinchi xatoga scroll qilish
                 if (firstErrorBlock) {
                     firstErrorBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
@@ -727,7 +734,7 @@
                     
                     let answerData = {
                         question: questionText,
-                        answer: selectedAnswer ? selectedAnswer.value : '(белгиланмаган)',
+                        answer: selectedAnswer ? selectedAnswer.value : '',
                         comment: commentValue
                     };
                     answers.push(answerData);
@@ -739,12 +746,19 @@
                 message += `🏛 Бўлим: ${department}\n\n`;
                 message += `━━━━━━━━━━━━━━━━━━\n\n`;
                 
-                answers.forEach((item, index) => {
+                answers.forEach((item) => {
                     message += `${item.question}\n`;
-                    message += `💬 Жавоб: ${item.answer}\n`;
+                    
+                    // Faqat javob belgilangan bo'lsa — javobni yozamiz
+                    if (item.answer) {
+                        message += `💬 Жавоб: ${item.answer}\n`;
+                    }
+                    
+                    // Faqat izoh yozilgan bo'lsa — izohni yozamiz
                     if (item.comment) {
                         message += `📝 Изоҳ: ${item.comment}\n`;
                     }
+                    
                     message += `\n`;
                 });
                 
