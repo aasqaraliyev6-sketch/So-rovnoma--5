@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorovnoma</title>
+    <title>So‘rovnoma</title>
     <style>
         * {
             margin: 0;
@@ -278,7 +278,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>📋 Sorovnoma</h1>
+        <h1>📋 So‘rovnoma</h1>
         
         <div class="info-box">
             ⚠️ <strong>Эътибор:</strong> Ҳар бир саволда жавобни белгилаш <strong>ёки</strong> қисқача баён ёзиш мумкин. Агар жавоб белгиланмаса, изоҳ ёзилган бўлиши шарт.
@@ -576,7 +576,7 @@
             <button type="submit" id="submitBtn">📤 Юбориш</button>
             
             <div class="success-message" id="successMessage">
-                ✅ Соровнома муваффақиятли юборилди!
+                ✅ Сўровнома муваффақиятли юборилди!
             </div>
             
             <div class="error-message" id="errorMessage">
@@ -626,7 +626,7 @@
                         if (hint) hint.classList.remove('show');
                     }
                     
-                    // Agar izoh yozilayotgan bo'lsa — radio belgilarni olib tashlash (sokin, hech qanday xabar chiqmaydi)
+                    // Agar izoh yozilayotgan bo'lsa — radio belgilarni olib tashlash (sokin)
                     if (this.value.trim().length > 0) {
                         const radios = questionBlock.querySelectorAll('input[type="radio"]');
                         radios.forEach(r => r.checked = false);
@@ -693,7 +693,6 @@
                 const block = document.getElementById(q.id);
                 const hint = document.getElementById(q.hint);
                 
-                // Agar javob ham, izoh ham bo'sh bo'lsa - xato
                 if (!selectedAnswer && !commentValue) {
                     hasError = true;
                     if (block) block.classList.add('error');
@@ -741,7 +740,7 @@
                 });
                 
                 // Telegram xabarini tayyorlash
-                let message = `📋 ЯНГИ СОРОВНОМА ЖАВОБИ\n\n`;
+                let message = `📋 ЯНГИ СЎРОВНОМА ЖАВОБИ\n\n`;
                 message += `🏢 Муассаса: ${institution}\n`;
                 message += `🏛 Бўлим: ${department}\n\n`;
                 message += `━━━━━━━━━━━━━━━━━━\n\n`;
@@ -749,12 +748,10 @@
                 answers.forEach((item) => {
                     message += `${item.question}\n`;
                     
-                    // Faqat javob belgilangan bo'lsa — javobni yozamiz
                     if (item.answer) {
                         message += `💬 Жавоб: ${item.answer}\n`;
                     }
                     
-                    // Faqat izoh yozilgan bo'lsa — izohni yozamiz
                     if (item.comment) {
                         message += `📝 Изоҳ: ${item.comment}\n`;
                     }
